@@ -125,11 +125,13 @@ class _SignupScreenState extends State<SignupScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.sizeOf(context).width;
+    final height = MediaQuery.sizeOf(context).height;
     return Scaffold(
         resizeToAvoidBottomInset: true,
         body: SizedBox(
-          width: double.maxFinite,
-          height: double.maxFinite,
+          width: width,
+          height: height,
           child: Stack(
             children: [
               Positioned(
@@ -138,8 +140,8 @@ class _SignupScreenState extends State<SignupScreen> {
                   child: FadeAnimation(
                     delay: 1,
                     child: Container(
-                      width: double.maxFinite,
-                      height: 330,
+                      width: width,
+                      height: height / 2.5,
                       // color: Colors.blue,
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
@@ -202,8 +204,8 @@ class _SignupScreenState extends State<SignupScreen> {
                 top: 260,
                 child: Container(
                   padding: const EdgeInsets.only(left: 20, right: 20, top: 30),
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height,
+                  width: width,
+                  height: height / 1,
                   decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius:
@@ -365,34 +367,29 @@ class _SignupScreenState extends State<SignupScreen> {
                         const SizedBox(
                           height: 30,
                         ),
-                        Positioned(
-                          top: 570,
-                          left: 30,
-                          right: 30,
-                          child: FadeAnimation(
-                            delay: 2.2,
-                            child: Container(
-                              height: 50,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(30),
-                                  gradient: LinearGradient(colors: [
-                                    HexColor('fccc8c'),
-                                    HexColor('fab67e'),
-                                    HexColor('f89f6f'),
-                                    HexColor('f78961'),
-                                  ])),
-                              child: Center(
-                                child: TextButton(
-                                  onPressed: () {
-                                    _signup();
-                                  },
-                                  child: Text(
-                                    "Signup",
-                                    style: GoogleFonts.playfair(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15,
-                                    ),
+                        FadeAnimation(
+                          delay: 2.2,
+                          child: Container(
+                            height: 50,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(30),
+                                gradient: LinearGradient(colors: [
+                                  HexColor('fccc8c'),
+                                  HexColor('fab67e'),
+                                  HexColor('f89f6f'),
+                                  HexColor('f78961'),
+                                ])),
+                            child: Center(
+                              child: TextButton(
+                                onPressed: () {
+                                  _signup();
+                                },
+                                child: Text(
+                                  "Signup",
+                                  style: GoogleFonts.playfair(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15,
                                   ),
                                 ),
                               ),

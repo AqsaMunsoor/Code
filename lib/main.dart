@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -14,6 +15,15 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(const ScalpInspectorApp());
+  // runApp(
+  //   DevicePreview(
+  //     enabled: true,
+  //     tools: [
+  //       ...DevicePreview.defaultTools,
+  //     ],
+  //     builder: (context) => ScalpInspectorApp(), // Wrap your app
+  //   ),
+  // );
 }
 
 class ScalpInspectorApp extends StatelessWidget {

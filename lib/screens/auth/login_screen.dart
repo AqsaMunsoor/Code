@@ -63,10 +63,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.sizeOf(context).width;
+    final height = MediaQuery.sizeOf(context).height;
     return Scaffold(
         body: SizedBox(
-      width: double.maxFinite,
-      height: double.maxFinite,
+      width: width,
+      height: height,
       child: Stack(
         children: [
           Positioned(
@@ -75,9 +77,8 @@ class _LoginScreenState extends State<LoginScreen> {
               child: FadeAnimation(
                 delay: 1,
                 child: Container(
-                  width: double.maxFinite,
-                  height: 350,
-                  // color: Colors.blue,
+                  width: width,
+                  height: height / 2.5,
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
@@ -90,7 +91,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       end: Alignment.bottomCenter,
                     ),
                   ),
-
                   child: FadeAnimation(
                     delay: 1.3,
                     child: Column(
@@ -139,8 +139,8 @@ class _LoginScreenState extends State<LoginScreen> {
             top: 320,
             child: Container(
               padding: const EdgeInsets.only(left: 20, right: 20, top: 30),
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
+              width: width,
+              height: height / 1.5,
               decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius:
@@ -210,34 +210,29 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(
                     height: 50,
                   ),
-                  Positioned(
-                    top: 570,
-                    left: 30,
-                    right: 30,
-                    child: FadeAnimation(
-                      delay: 2.2,
-                      child: Container(
-                        height: 50,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
-                            gradient: LinearGradient(colors: [
-                              HexColor('fccc8c'),
-                              HexColor('fab67e'),
-                              HexColor('f89f6f'),
-                              HexColor('f78961'),
-                            ])),
-                        child: Center(
-                          child: TextButton(
-                            onPressed: () async {
-                              await firebaseLogin();
-                            },
-                            child: Text(
-                              "Login",
-                              style: GoogleFonts.playfair(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 15,
-                              ),
+                  FadeAnimation(
+                    delay: 2.2,
+                    child: Container(
+                      height: 50,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          gradient: LinearGradient(colors: [
+                            HexColor('fccc8c'),
+                            HexColor('fab67e'),
+                            HexColor('f89f6f'),
+                            HexColor('f78961'),
+                          ])),
+                      child: Center(
+                        child: TextButton(
+                          onPressed: () async {
+                            await firebaseLogin();
+                          },
+                          child: Text(
+                            "Login",
+                            style: GoogleFonts.playfair(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
                             ),
                           ),
                         ),

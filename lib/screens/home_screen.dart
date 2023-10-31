@@ -5,8 +5,9 @@ import 'package:flutter_gutter/flutter_gutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:scalpinspector_app/animation.dart';
 
-import 'package:scalpinspector_app/help.dart';
+import 'package:scalpinspector_app/screens/help_screen.dart';
 import 'package:scalpinspector_app/history.dart';
 import 'package:scalpinspector_app/screens/chatbot_screen.dart';
 import 'package:scalpinspector_app/screens/diagnose_screen.dart';
@@ -261,17 +262,19 @@ class _HomeContentState extends State<HomeContent> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.sizeOf(context).width;
+    final height = MediaQuery.sizeOf(context).height;
     return SizedBox(
-      width: double.maxFinite,
-      height: double.maxFinite,
+      width: width,
+      height: height,
       child: Stack(
         children: [
           Positioned(
               left: 0,
               right: 0,
               child: Container(
-                width: double.maxFinite,
-                height: 250,
+                width: width,
+                height: height / 3.5,
                 // color: Colors.blue,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -289,22 +292,28 @@ class _HomeContentState extends State<HomeContent> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    const CircleAvatar(
-                      radius: 40.0,
-                      backgroundColor: Colors.transparent,
-                      backgroundImage: NetworkImage(
-                          'https://www.revixpert.ch/app/uploads/portrait-placeholder.jpg'),
+                    FadeAnimation(
+                      delay: 1,
+                      child: const CircleAvatar(
+                        radius: 40.0,
+                        backgroundColor: Colors.transparent,
+                        backgroundImage: NetworkImage(
+                            'https://www.revixpert.ch/app/uploads/portrait-placeholder.jpg'),
+                      ),
                     ),
                     const SizedBox(
                       height: 50,
                     ),
-                    Text(
-                      '${FirebaseAuth.instance.currentUser!.displayName}',
-                      style: GoogleFonts.robotoCondensed(
-                        fontSize: 24.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        letterSpacing: 2,
+                    FadeAnimation(
+                      delay: 1.4,
+                      child: Text(
+                        '${FirebaseAuth.instance.currentUser!.displayName}',
+                        style: GoogleFonts.robotoCondensed(
+                          fontSize: 24.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          letterSpacing: 2,
+                        ),
                       ),
                     ),
                   ],
@@ -314,92 +323,89 @@ class _HomeContentState extends State<HomeContent> {
             top: 200,
             child: Container(
               padding: const EdgeInsets.only(left: 20, right: 20, top: 30),
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
+              width: width,
+              height: height / 1.5,
               decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius:
                       BorderRadius.only(topRight: Radius.circular(30))),
-              child: Column(
-                children: [
-                  StaggeredGridView.countBuilder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    crossAxisCount: 2,
-                    itemCount: 4,
-                    itemBuilder: (context, index) {
-                      return InkWell(
-                        onTap: () {
-                          _navigateToScreen(index);
-                        },
-                        child: Stack(
-                          children: [
-                            Container(
-                              color: Colors.white,
-                              height: 200,
-                            ),
-                            Positioned(
-                              top: 20,
-                              left: 0,
-                              right: 0,
-                              child: Container(
-                                height: 150,
-                                padding: const EdgeInsets.all(10),
-                                decoration: ShapeDecoration(
-                                  shape: const RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(10))),
-                                  color: customColor[index],
-                                ),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          titles[index],
-                                          style: GoogleFonts.robotoCondensed(
-                                            fontSize: 20,
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
-                                            letterSpacing: 3,
-                                          ),
-                                        ),
-                                        const Gutter(),
-                                        Icon(
-                                          Icons.arrow_forward_ios,
+              child: FadeAnimation(
+                delay: 1.6,
+                child: StaggeredGridView.countBuilder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  crossAxisCount: 2,
+                  itemCount: 4,
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      onTap: () {
+                        _navigateToScreen(index);
+                      },
+                      child: Stack(
+                        children: [
+                          Container(
+                            color: Colors.white,
+                            height: 200,
+                          ),
+                          Positioned(
+                            top: 20,
+                            left: 0,
+                            right: 0,
+                            child: Container(
+                              height: 150,
+                              padding: const EdgeInsets.all(10),
+                              decoration: ShapeDecoration(
+                                shape: const RoundedRectangleBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10))),
+                                color: customColor[index],
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        titles[index],
+                                        style: GoogleFonts.robotoCondensed(
+                                          fontSize: 20,
                                           color: Colors.white,
-                                          size: 20,
+                                          fontWeight: FontWeight.bold,
+                                          letterSpacing: 3,
                                         ),
-                                      ],
-                                    ),
-                                    const Gutter(),
-                                  ],
-                                ),
+                                      ),
+                                      const Gutter(),
+                                      Icon(
+                                        Icons.arrow_forward_ios,
+                                        color: Colors.white,
+                                        size: 20,
+                                      ),
+                                    ],
+                                  ),
+                                  const Gutter(),
+                                ],
                               ),
                             ),
-                            Positioned(
-                              top: 0,
-                              right: 50,
-                              child: Image.network(
-                                images[index],
-                                height: 90,
-                                width: 90,
-                                fit: BoxFit.cover,
-                              ),
-                            )
-                          ],
-                        ),
-                      );
-                    },
-                    staggeredTileBuilder: (index) => const StaggeredTile.fit(1),
-                    mainAxisSpacing: 30.0,
-                    crossAxisSpacing: 16.0,
-                  ),
-                ],
+                          ),
+                          Positioned(
+                            top: 0,
+                            right: 50,
+                            child: Image.network(
+                              images[index],
+                              height: 80,
+                              width: 80,
+                            ),
+                          )
+                        ],
+                      ),
+                    );
+                  },
+                  staggeredTileBuilder: (index) => const StaggeredTile.fit(1),
+                  mainAxisSpacing: 30.0,
+                  crossAxisSpacing: 16.0,
+                ),
               ),
             ),
           ),
