@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>559865798545-6jr435hjfqjv87qcnm14eg7qd61iaq90.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.559865798545-6jr435hjfqjv87qcnm14eg7qd61iaq90</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBm80fAv4bJ1ceN2Zx4zhFS7z80o5qpUaY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>559865798545</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.scalpinspectorApp</string>
+	<key>PROJECT_ID</key>
+	<string>scalp-inspector-23247</string>
+	<key>STORAGE_BUCKET</key>
+	<string>scalp-inspector-23247.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:559865798545:ios:f07cff0104d9412d184430</string>
+</dict>
+</plist>
