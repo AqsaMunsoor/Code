@@ -17,14 +17,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.1.6"
-  animated_notch_bottom_bar:
+  another_flushbar:
     dependency: "direct main"
     description:
-      name: animated_notch_bottom_bar
-      sha256: "0fb99df2834bb1c235b59d6888f31fd958565e0a79c5e55d9d430a923d9ea915"
+      name: another_flushbar
+      sha256: "19bf9520230ec40b300aaf9dd2a8fefcb277b25ecd1c4838f530566965befc2a"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.0"
+    version: "1.12.30"
   archive:
     dependency: transitive
     description:
@@ -358,6 +358,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_form_builder:
+    dependency: "direct main"
+    description:
+      name: flutter_form_builder
+      sha256: "8973beed34b6d951d36bf688b52e9e3040b47b763c35c320bd6f4c2f6b13f3a2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "9.1.1"
   flutter_gutter:
     dependency: "direct main"
     description:
@@ -1028,4 +1036,4 @@ packages:
     version: "8.1.2"
 sdks:
   dart: ">=3.1.0-185.0.dev <4.0.0"
-  flutter: ">=3.7.0"
+  flutter: ">=3.10.0"

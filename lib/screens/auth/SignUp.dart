@@ -1,3 +1,6 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:another_flushbar/flushbar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -46,6 +49,23 @@ class _SignupScreenState extends State<SignupScreen> {
         );
         user = userCredential.user;
       } on FirebaseAuthException catch (e) {
+        Flushbar(
+          duration: const Duration(seconds: 3),
+          flushbarStyle: FlushbarStyle.FLOATING,
+          backgroundGradient: LinearGradient(colors: [
+            HexColor('fccc8c'),
+            HexColor('fab67e'),
+            HexColor('f89f6f'),
+            HexColor('f78961'),
+          ]),
+          messageText: Text(
+            e.code.toString(),
+            style: GoogleFonts.robotoCondensed(
+              fontSize: 18.0,
+              color: Colors.white,
+            ),
+          ),
+        ).show(context);
         if (e.code == 'weak-password') {
           _firebaseError = 'The password provided is too weak.';
         } else if (e.code == 'email-already-in-use') {
@@ -74,11 +94,30 @@ class _SignupScreenState extends State<SignupScreen> {
         // Success - Perform signup logic here
         await firebaseSignup();
         if (_firebaseError == null) {
-          Get.snackbar(
-            'Success',
-            'Your account has been created.',
-            snackPosition: SnackPosition.BOTTOM,
-          );
+          Flushbar(
+            duration: const Duration(seconds: 3),
+            flushbarStyle: FlushbarStyle.FLOATING,
+            backgroundColor: Colors.greenAccent,
+            titleText: Text(
+              'Success',
+              style: GoogleFonts.robotoCondensed(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20.0,
+                  color: Colors.white),
+            ),
+            messageText: Text(
+              'Your account has been created.',
+              style: GoogleFonts.robotoCondensed(
+                fontSize: 18.0,
+                color: Colors.white,
+              ),
+            ),
+          ).show(context);
+          // Get.snackbar(
+          //   'Success',
+          //   'Your account has been created.',
+          //   snackPosition: SnackPosition.BOTTOM,
+          // );
           await Future.delayed(const Duration(seconds: 2));
           if (user != null) {
             user!.updateDisplayName("$firstName $lastName");
@@ -87,21 +126,59 @@ class _SignupScreenState extends State<SignupScreen> {
             Get.to(SplashScreen());
           }
         } else {
-          Get.snackbar(
-            'Error',
-            _firebaseError!,
-            snackPosition: SnackPosition.BOTTOM,
-          );
+          Flushbar(
+            duration: const Duration(seconds: 3),
+            flushbarStyle: FlushbarStyle.FLOATING,
+            backgroundColor: Colors.redAccent,
+            titleText: Text(
+              'Error',
+              style: GoogleFonts.robotoCondensed(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20.0,
+                  color: Colors.white),
+            ),
+            messageText: Text(
+              _firebaseError!,
+              style: GoogleFonts.robotoCondensed(
+                fontSize: 18.0,
+                color: Colors.white,
+              ),
+            ),
+          ).show(context);
+          // Get.snackbar(
+          //   'Error',
+          //   _firebaseError!,
+          //   snackPosition: SnackPosition.BOTTOM,
+          // );
         }
       } else {
         setState(() {
           _confirmPasswordError = 'Passwords do not match.';
         });
-        Get.snackbar(
-          'Error',
-          'Passwords do not match.',
-          snackPosition: SnackPosition.BOTTOM,
-        );
+        Flushbar(
+          duration: const Duration(seconds: 3),
+          flushbarStyle: FlushbarStyle.FLOATING,
+          backgroundColor: Colors.redAccent,
+          titleText: Text(
+            'Error',
+            style: GoogleFonts.robotoCondensed(
+                fontWeight: FontWeight.bold,
+                fontSize: 16.0,
+                color: Colors.white),
+          ),
+          messageText: Text(
+            'Passwords do not match',
+            style: GoogleFonts.robotoCondensed(
+              fontSize: 15.0,
+              color: Colors.white,
+            ),
+          ),
+        ).show(context);
+        // Get.snackbar(
+        //   'Error',
+        //   'Passwords do not match.',
+        //   snackPosition: SnackPosition.BOTTOM,
+        // );
       }
     }
   }
@@ -127,71 +204,42 @@ class _SignupScreenState extends State<SignupScreen> {
   Widget build(BuildContext context) {
     final width = MediaQuery.sizeOf(context).width;
     final height = MediaQuery.sizeOf(context).height;
-    return Scaffold(
+    return Container(
+      height: height,
+      width: width,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(
+            'assets/2.png',
+          ),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
         resizeToAvoidBottomInset: true,
-        body: SizedBox(
-          width: width,
-          height: height,
-          child: Stack(
-            children: [
-              Positioned(
-                  left: 0,
-                  right: 0,
-                  child: FadeAnimation(
-                    delay: 1,
-                    child: Container(
-                      width: width,
-                      height: height / 2.5,
-                      // color: Colors.blue,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            HexColor('fccc8c'),
-                            HexColor('fab67e'),
-                            HexColor('f89f6f'),
-                            HexColor('f78961'),
-                          ],
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                        ),
-                      ),
-
-                      child: FadeAnimation(
-                        delay: 1.3,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            const SizedBox(
-                              height: 30,
-                            ),
-                            SizedBox(
-                              child: Image.asset('assets/scalp_logo.png'),
-                              width: 100,
-                              height: 100,
-                            ),
-                            const Gutter(),
-                            Text(
-                              'Scalp Inspector',
-                              style: GoogleFonts.playfair(
-                                fontSize: 30,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                letterSpacing: 3,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  )),
-              Positioned(
-                right: 15,
-                top: 200,
-                child: FadeAnimation(
-                  delay: 1.6,
+        body: Column(
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 30,
+                ),
+                FadeAnimation(
+                  delay: 1,
+                  child: SizedBox(
+                    child: Image.asset('assets/scalp_logo.png'),
+                    width: 75,
+                    height: 75,
+                  ),
+                ),
+                const Gutter(),
+                FadeAnimation(
+                  delay: 1.2,
                   child: Text(
-                    'Sign Up',
-                    style: GoogleFonts.playfair(
+                    'Scalp Inspector',
+                    style: GoogleFonts.robotoCondensed(
                       fontSize: 30,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -199,24 +247,33 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                   ),
                 ),
+              ],
+            ),
+            FadeAnimation(
+              delay: 1.4,
+              child: Text(
+                'Sign Up',
+                style: GoogleFonts.robotoCondensed(
+                  fontSize: 30,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 3,
+                ),
               ),
-              Positioned(
-                top: 260,
+            ),
+            Expanded(
+              child: SingleChildScrollView(
                 child: Container(
-                  padding: const EdgeInsets.only(left: 20, right: 20, top: 30),
+                  padding: const EdgeInsets.only(left: 20, right: 20, top: 50),
                   width: width,
                   height: height / 1,
-                  decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius:
-                          BorderRadius.only(topRight: Radius.circular(30))),
                   child: Form(
                     key: _formKey,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         FadeAnimation(
-                          delay: 1.8,
+                          delay: 1.6,
                           child: Material(
                             elevation: 5.0,
                             borderRadius: BorderRadius.circular(30),
@@ -224,7 +281,7 @@ class _SignupScreenState extends State<SignupScreen> {
                               controller: _firstNameController,
                               decoration: InputDecoration(
                                 errorText: _firstNameError,
-                                prefixIcon: Icon(Icons.email_rounded),
+                                prefixIcon: Icon(Icons.person_rounded),
                                 prefixIconColor: Colors.black45,
                                 contentPadding: EdgeInsets.all(15),
                                 border: InputBorder.none,
@@ -254,7 +311,7 @@ class _SignupScreenState extends State<SignupScreen> {
                               controller: _lastNameController,
                               decoration: InputDecoration(
                                 errorText: _lastNameError,
-                                prefixIcon: Icon(Icons.email_rounded),
+                                prefixIcon: Icon(Icons.person_rounded),
                                 prefixIconColor: Colors.black45,
                                 contentPadding: EdgeInsets.all(15),
                                 border: InputBorder.none,
@@ -276,7 +333,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           height: 30,
                         ),
                         FadeAnimation(
-                          delay: 1.8,
+                          delay: 2,
                           child: Material(
                             elevation: 5.0,
                             borderRadius: BorderRadius.circular(30),
@@ -306,7 +363,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           height: 30,
                         ),
                         FadeAnimation(
-                          delay: 2,
+                          delay: 2.2,
                           child: Material(
                             elevation: 5.0,
                             borderRadius: BorderRadius.circular(30),
@@ -337,7 +394,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           height: 30,
                         ),
                         FadeAnimation(
-                          delay: 2,
+                          delay: 2.4,
                           child: Material(
                             elevation: 5.0,
                             borderRadius: BorderRadius.circular(30),
@@ -368,25 +425,23 @@ class _SignupScreenState extends State<SignupScreen> {
                           height: 30,
                         ),
                         FadeAnimation(
-                          delay: 2.2,
-                          child: Container(
-                            height: 50,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30),
-                                gradient: LinearGradient(colors: [
-                                  HexColor('fccc8c'),
-                                  HexColor('fab67e'),
-                                  HexColor('f89f6f'),
-                                  HexColor('f78961'),
-                                ])),
-                            child: Center(
-                              child: TextButton(
-                                onPressed: () {
-                                  _signup();
-                                },
+                          delay: 2.6,
+                          child: InkWell(
+                            onTap: () => _signup(),
+                            child: Container(
+                              height: 50,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30),
+                                  gradient: LinearGradient(colors: [
+                                    HexColor('fccc8c'),
+                                    HexColor('fab67e'),
+                                    HexColor('f89f6f'),
+                                    HexColor('f78961'),
+                                  ])),
+                              child: Center(
                                 child: Text(
-                                  "Signup",
-                                  style: GoogleFonts.playfair(
+                                  "Sign up",
+                                  style: GoogleFonts.robotoCondensed(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 15,
@@ -404,10 +459,10 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                 ),
               ),
-            ],
-          ),
-        ));
-
-    // );
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

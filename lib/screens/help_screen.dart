@@ -101,101 +101,85 @@ class _HelpScreenState extends State<HelpScreen> {
   Widget build(BuildContext context) {
     final width = MediaQuery.sizeOf(context).width;
     final height = MediaQuery.sizeOf(context).height;
-    return SizedBox(
-      width: width,
+    return Container(
       height: height,
-      child: Stack(
+      width: width,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(
+            'assets/1.png',
+          ),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: Column(
         children: [
-          Positioned(
-              left: 0,
-              right: 0,
-              child: Container(
-                width: width,
-                height: height / 3.5,
-                // color: Colors.blue,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      HexColor('fccc8c'),
-                      HexColor('fab67e'),
-                      HexColor('f89f6f'),
-                      HexColor('f78961'),
-                    ],
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                  ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 50,
+              ),
+              FadeAnimation(
+                delay: 1,
+                child: CircleAvatar(
+                  radius: 50.0,
+                  backgroundColor: Colors.transparent,
+                  backgroundImage: NetworkImage(
+                      'https://cdn-icons-png.flaticon.com/128/4288/4288903.png'),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    FadeAnimation(
-                      delay: 1,
-                      child: CircleAvatar(
-                        radius: 50.0,
-                        backgroundColor: Colors.transparent,
-                        backgroundImage: NetworkImage(
-                            'https://cdn-icons-png.flaticon.com/128/4288/4288903.png'),
+              ),
+              SizedBox(
+                height: 50,
+              ),
+            ],
+          ),
+          Container(
+            padding: const EdgeInsets.only(left: 20, right: 20, top: 30),
+            width: width,
+            height: height / 1.5,
+            child: FadeAnimation(
+              delay: 1.4,
+              child: ListView.builder(
+                itemCount: 4,
+                itemBuilder: (context, index) {
+                  return InkWell(
+                    onTap: () {
+                      _navigateToScreen(index);
+                    },
+                    child: Container(
+                      height: width / 5.5,
+                      margin: EdgeInsets.symmetric(
+                        horizontal: width / 20,
+                        vertical: width / 30,
                       ),
-                    ),
-                    SizedBox(
-                      height: 50,
-                    ),
-                  ],
-                ),
-              )),
-          Positioned(
-            top: 200,
-            child: Container(
-              padding: const EdgeInsets.only(left: 20, right: 20, top: 30),
-              width: width,
-              height: height / 1.5,
-              decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius:
-                      BorderRadius.only(topRight: Radius.circular(30))),
-              child: FadeAnimation(
-                delay: 1.4,
-                child: ListView.builder(
-                  itemCount: 4,
-                  itemBuilder: (context, index) {
-                    return InkWell(
-                      onTap: () {
-                        _navigateToScreen(index);
-                      },
-                      child: Container(
-                        height: width / 5.5,
-                        margin: EdgeInsets.symmetric(
-                          horizontal: width / 20,
-                          vertical: width / 30,
-                        ),
-                        decoration: BoxDecoration(
-                            color: customColor[index],
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(20),
+                      decoration: BoxDecoration(
+                          color: customColor[index],
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(20),
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.1),
+                              blurRadius: 30,
+                              spreadRadius: 5,
                             ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
-                                blurRadius: 30,
-                                spreadRadius: 5,
-                              ),
-                            ]),
-                        child: Center(
-                          child: Text(
-                            titles[index],
-                            style: GoogleFonts.robotoCondensed(
-                              fontSize: 20,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 3,
-                            ),
+                          ]),
+                      child: Center(
+                        child: Text(
+                          titles[index],
+                          style: GoogleFonts.robotoCondensed(
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 3,
                           ),
                         ),
                       ),
-                    );
-                  },
-                ),
+                    ),
+                  );
+                },
               ),
             ),
           ),

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:scalpinspector_app/animation.dart';
 import 'home_screen.dart';
@@ -43,15 +44,9 @@ class _SplashScreenState extends State<SplashScreen>
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            HexColor('fccc8c'),
-            HexColor('fab67e'),
-            HexColor('f89f6f'),
-            HexColor('f78961'),
-          ],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
+        image: DecorationImage(
+          image: AssetImage('assets/3.png'),
+          fit: BoxFit.cover,
         ),
       ),
       child: Scaffold(
@@ -60,29 +55,27 @@ class _SplashScreenState extends State<SplashScreen>
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Padding(
-                padding: EdgeInsets.only(
-                    bottom: 80.0), // Adjust the padding value as needed
-                child: Image.asset(
-                  'assets/scalp_logo.png', // Replace with the path to your image
-                  width: 150,
+              FadeAnimation(
+                delay: 1,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      bottom: 80.0), // Adjust the padding value as needed
+                  child: Image.asset(
+                    'assets/scalp_logo.png', // Replace with the path to your image
+                    width: 200,
+                    height: 200,
+                  ),
                 ),
               ),
-              AnimatedBuilder(
-                animation: animationController,
-                builder: (context, child) {
-                  assert(context != null);
-                  return Transform.translate(
-                    offset: Offset(0, -animation.value * 50),
-                    child: child,
-                  );
-                },
+              FadeAnimation(
+                delay: 2,
                 child: Text(
-                  'Scalp Inspector',
-                  style: TextStyle(
-                    fontSize: 25,
+                  'SCALP INSPECTOR',
+                  style: GoogleFonts.robotoCondensed(
+                    fontSize: 35,
                     fontWeight: FontWeight.bold,
-                    color: Colors.grey[600],
+                    letterSpacing: 5,
+                    color: Colors.white,
                   ),
                 ),
               ),

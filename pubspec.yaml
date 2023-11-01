@@ -56,13 +56,13 @@ dependencies:
   google_fonts: ^6.1.0
   flutter_gutter: ^1.0.0
   hexcolor: ^3.0.1
-  # animated_bottom_nav_bar: ^0.0.1
-  animated_notch_bottom_bar: ^1.0.0
   circle_nav_bar: ^2.0.1+1
   motion_tab_bar_v2: ^0.3.0
   curved_navigation_bar: ^1.0.3
   staggered_grid_view_flutter: ^0.0.4
   device_preview: ^1.1.0
+  flutter_form_builder: ^9.1.1
+  another_flushbar: ^1.12.30
   # pick image
 
 dev_dependencies:
