@@ -19,35 +19,37 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Feedback'),
+        title: const Text('Feedback'),
       ),
       body: Center(
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 'How was your experience?',
                 style: TextStyle(
                   fontSize: 18.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               Align(
                 alignment: Alignment.center,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     GestureDetector(
-                      onTap: () => selectEmoji(Icons.sentiment_very_dissatisfied),
+                      onTap: () =>
+                          selectEmoji(Icons.sentiment_very_dissatisfied),
                       child: Icon(
                         Icons.sentiment_very_dissatisfied,
                         size: 40.0,
-                        color: selectedEmoji == Icons.sentiment_very_dissatisfied
-                            ? Colors.red
-                            : null,
+                        color:
+                            selectedEmoji == Icons.sentiment_very_dissatisfied
+                                ? Colors.red
+                                : null,
                       ),
                     ),
                     GestureDetector(
@@ -55,7 +57,9 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                       child: Icon(
                         Icons.sentiment_dissatisfied,
                         size: 40.0,
-                        color: selectedEmoji == Icons.sentiment_dissatisfied ? Colors.orange : null,
+                        color: selectedEmoji == Icons.sentiment_dissatisfied
+                            ? Colors.orange
+                            : null,
                       ),
                     ),
                     GestureDetector(
@@ -63,7 +67,9 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                       child: Icon(
                         Icons.sentiment_neutral,
                         size: 40.0,
-                        color: selectedEmoji == Icons.sentiment_neutral ? Colors.yellow : null,
+                        color: selectedEmoji == Icons.sentiment_neutral
+                            ? Colors.yellow
+                            : null,
                       ),
                     ),
                     GestureDetector(
@@ -71,7 +77,9 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                       child: Icon(
                         Icons.sentiment_satisfied,
                         size: 40.0,
-                        color: selectedEmoji == Icons.sentiment_satisfied ? Colors.lightGreen : null,
+                        color: selectedEmoji == Icons.sentiment_satisfied
+                            ? Colors.lightGreen
+                            : null,
                       ),
                     ),
                     GestureDetector(
@@ -79,25 +87,27 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                       child: Icon(
                         Icons.sentiment_very_satisfied,
                         size: 40.0,
-                        color: selectedEmoji == Icons.sentiment_very_satisfied ? Colors.green : null,
+                        color: selectedEmoji == Icons.sentiment_very_satisfied
+                            ? Colors.green
+                            : null,
                       ),
                     ),
                   ],
                 ),
               ),
-              SizedBox(height: 16.0),
-              Text(
+              const SizedBox(height: 16.0),
+              const Text(
                 'Tell us more about your experience:',
                 style: TextStyle(
                   fontSize: 18.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 8.0),
+              const SizedBox(height: 8.0),
               Expanded(
                 child: TextField(
                   maxLines: null,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: 'Write your feedback here...',
                     border: OutlineInputBorder(),
                   ),
@@ -108,7 +118,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                   },
                 ),
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               Align(
                 alignment: Alignment.center,
                 child: ElevatedButton(
@@ -118,14 +128,15 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                       context: context,
                       builder: (BuildContext context) {
                         return AlertDialog(
-                          title: Text('Feedback Submitted'),
-                          content: Text('Thank you for your feedback!'),
+                          title: const Text('Feedback Submitted'),
+                          content: const Text('Thank you for your feedback!'),
                           actions: [
                             TextButton(
-                              child: Text('OK'),
+                              child: const Text('OK'),
                               onPressed: () {
                                 Navigator.pop(context); // Close the dialog
-                                Navigator.pop(context); // Go back to the home screen
+                                Navigator.pop(
+                                    context); // Go back to the home screen
                               },
                             ),
                           ],
@@ -133,7 +144,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                       },
                     );
                   },
-                  child: Text('Submit Feedback'),
+                  child: const Text('Submit Feedback'),
                 ),
               ),
             ],

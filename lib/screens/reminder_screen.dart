@@ -49,7 +49,7 @@ class _ReminderScreenState extends State<ReminderScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Reminder'),
+        title: const Text('Reminder'),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -57,47 +57,47 @@ class _ReminderScreenState extends State<ReminderScreen> {
           Expanded(
             child: Center(
               child: Padding(
-                padding: EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16.0),
                 child: Image.asset('assets/reminder_pic.png'),
               ),
             ),
           ),
           Container(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             child: ElevatedButton.icon(
               onPressed: _selectDate,
-              icon: Icon(Icons.calendar_today),
-              label: Text('Select Date'),
+              icon: const Icon(Icons.calendar_today),
+              label: const Text('Select Date'),
             ),
           ),
-          SizedBox(height: 16.0),
+          const SizedBox(height: 16.0),
           Text(
             selectedDate != null
                 ? 'Selected Date: ${selectedDate!.day}-${selectedDate!.month}-${selectedDate!.year}'
                 : 'No Date Selected',
-            style: TextStyle(fontSize: 18.0),
+            style: const TextStyle(fontSize: 18.0),
             textAlign: TextAlign.center,
           ),
-          SizedBox(height: 16.0),
+          const SizedBox(height: 16.0),
           Container(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             child: ElevatedButton(
               onPressed: _setReminder,
-              child: Text('Set Reminder'),
+              child: const Text('Set Reminder'),
             ),
           ),
-          Spacer(),
+          const Spacer(),
           BottomNavigationBar(
             items: [
-              BottomNavigationBarItem(
+              const BottomNavigationBarItem(
                 icon: Icon(Icons.home),
                 label: 'Home',
               ),
-              BottomNavigationBarItem(
+              const BottomNavigationBarItem(
                 icon: Icon(Icons.help),
                 label: 'Help',
               ),
-              BottomNavigationBarItem(
+              const BottomNavigationBarItem(
                 icon: Icon(Icons.person),
                 label: 'Profile',
               ),

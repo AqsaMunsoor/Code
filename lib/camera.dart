@@ -68,8 +68,8 @@ class _CameraScreenState extends State<CameraScreen> {
 
       // Construct the path where the image should be saved
       final directory = await getTemporaryDirectory();
-      final filePath =
-      path.join(directory.path, 'image_${DateTime.now().millisecondsSinceEpoch}.jpg');
+      final filePath = path.join(
+          directory.path, 'image_${DateTime.now().millisecondsSinceEpoch}.jpg');
 
       // Take the picture and save it to the given path
       final XFile picture = await _controller.takePicture();
@@ -98,7 +98,7 @@ class _CameraScreenState extends State<CameraScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Camera Example'),
+        title: const Text('Camera Example'),
       ),
       body: Column(
         children: [
@@ -111,19 +111,19 @@ class _CameraScreenState extends State<CameraScreen> {
                   return CameraPreview(_controller);
                 } else {
                   // Otherwise, display a loading indicator
-                  return Center(child: CircularProgressIndicator());
+                  return const Center(child: CircularProgressIndicator());
                 }
               },
             ),
           ),
           ElevatedButton(
             onPressed: pickImageFromGallery,
-            child: Text('Select Image'),
+            child: const Text('Select Image'),
           ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.camera),
+        child: const Icon(Icons.camera),
         onPressed: () async {
           final imagePath = await takePicture();
           // Do something with the image path (e.g., display it in a new screen)
@@ -131,7 +131,8 @@ class _CameraScreenState extends State<CameraScreen> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => DisplayPictureScreen(imagePath: imagePath),
+                builder: (context) =>
+                    DisplayPictureScreen(imagePath: imagePath),
               ),
             );
           }
@@ -144,14 +145,15 @@ class _CameraScreenState extends State<CameraScreen> {
 class DisplayPictureScreen extends StatelessWidget {
   final String imagePath;
 
-  const DisplayPictureScreen({Key? key, required this.imagePath}) : super(key: key);
+  const DisplayPictureScreen({Key? key, required this.imagePath})
+      : super(key: key);
 
   get _imageFile => null;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Display Picture')),
+      appBar: AppBar(title: const Text('Display Picture')),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

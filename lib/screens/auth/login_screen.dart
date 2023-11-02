@@ -6,6 +6,7 @@ import 'package:flutter_gutter/flutter_gutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:scalpinspector_app/animation.dart';
 import 'package:scalpinspector_app/screens/auth/SignUp.dart';
 import 'package:scalpinspector_app/screens/splash_screen.dart';
@@ -95,7 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Container(
         height: height,
         width: width,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage(
               'assets/1.png',
@@ -109,11 +110,9 @@ class _LoginScreenState extends State<LoginScreen> {
           body: Column(
             children: [
               Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  const SizedBox(
-                    height: 50,
-                  ),
+                  Gutter(),
                   FadeAnimation(
                     delay: 1,
                     child: SizedBox(
@@ -122,32 +121,39 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: 100,
                     ),
                   ),
-                  const Gutter(),
                   FadeAnimation(
                     delay: 1.2,
                     child: Text(
                       'Scalp Inspector',
                       style: GoogleFonts.robotoCondensed(
-                        fontSize: 30,
+                        fontSize: 35,
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                         letterSpacing: 3,
                       ),
                     ),
                   ),
-                ],
-              ),
-              FadeAnimation(
-                delay: 1.4,
-                child: Text(
-                  'Login',
-                  style: GoogleFonts.robotoCondensed(
-                    fontSize: 30,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 3,
+                  FadeAnimation(
+                    delay: 1.4,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          'Login',
+                          style: GoogleFonts.robotoCondensed(
+                            fontSize: 30,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 3,
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        )
+                      ],
+                    ),
                   ),
-                ),
+                ],
               ),
               Expanded(
                 child: SingleChildScrollView(

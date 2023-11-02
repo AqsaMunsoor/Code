@@ -23,7 +23,7 @@ class ResultScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Result Screen'),
+        title: const Text('Result Screen'),
       ),
       body: Center(
         child: Column(
@@ -31,15 +31,15 @@ class ResultScreen extends StatelessWidget {
           children: [
             imageFile != null
                 ? Image.file(imageFile!, width: 300, height: 250)
-                : Placeholder(fallbackHeight: 200),
-            Text(
+                : const Placeholder(fallbackHeight: 200),
+            const Text(
               'Disease Detected:',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text(
               diseaseName!,
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             // Text(
             //   'Score:',
@@ -50,15 +50,15 @@ class ResultScreen extends StatelessWidget {
             //   confidenceScore!,
             //   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             // ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () async {
                 await _saveResultToDatabase(diseaseName!, confidenceScore!);
               },
-              child: Text('Save Result'),
+              child: const Text('Save Result'),
             ),
             //medication page
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
@@ -66,7 +66,7 @@ class ResultScreen extends StatelessWidget {
                           diseaseType: matchDiseaseNameWithEnums(diseaseName!),
                         )));
               },
-              child: Text('Medication'),
+              child: const Text('Medication'),
             ),
           ],
         ),
@@ -100,7 +100,7 @@ class ResultScreen extends StatelessWidget {
     DatabaseHelper databaseHelper = DatabaseHelper();
     int id = await databaseHelper.insertApiResult(disease, medication);
     ScaffoldMessenger.of(Get.context!).showSnackBar(
-      SnackBar(
+      const SnackBar(
         content: Text('Result saved to database.'),
         duration: Duration(seconds: 1),
       ),

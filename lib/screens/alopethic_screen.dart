@@ -11,7 +11,7 @@ class AlopethicScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Alopethic Medicine'),
+        title: const Text('Alopethic Medicine'),
       ),
       body: Column(
         children: [
@@ -19,54 +19,54 @@ class AlopethicScreen extends StatelessWidget {
             child: ListView(
               children: [
                 if (disease == DiseaseType.Alopecia)
-                  ListTile(
+                  const ListTile(
                     title: Text('Alopecia'),
                     subtitle: Text('Description of alopecia'),
                   ),
-                ListTile(
+                const ListTile(
                   title: Text('Alopecia 2'),
                   subtitle: Text('Description of alopecia 2'),
                 ),
-                ListTile(
+                const ListTile(
                   title: Text('Alopecia 3'),
                   subtitle: Text('Description of alopecia 3'),
                 ),
                 if (disease == DiseaseType.Dandruff)
-                  ListTile(
+                  const ListTile(
                     title: Text('Dandruff'),
                     subtitle: Text('Description of Dandrufff'),
                   ),
-                ListTile(
+                const ListTile(
                   title: Text('Dandruff 2'),
                   subtitle: Text('Description of Dandrufff 2'),
                 ),
-                ListTile(
+                const ListTile(
                   title: Text('Dandruff 3'),
                   subtitle: Text('Description of Dandrufff 3'),
                 ),
                 if (disease == DiseaseType.Seborrheic)
-                  ListTile(
+                  const ListTile(
                     title: Text('Seborrheic'),
                     subtitle: Text('Description of Seborrheic'),
                   ),
-                ListTile(
+                const ListTile(
                   title: Text('Seborrheic 2'),
                   subtitle: Text('Description of Seborrheic 2'),
                 ),
-                ListTile(
+                const ListTile(
                   title: Text('Seborrheic 3'),
                   subtitle: Text('Description of Seborrheic 3'),
                 ),
                 if (disease == DiseaseType.Folliculitis)
-                  ListTile(
+                  const ListTile(
                     title: Text('Folliculitis'),
                     subtitle: Text('Description of Folliculitis'),
                   ),
-                ListTile(
+                const ListTile(
                   title: Text('Folliculitis 2'),
                   subtitle: Text('Description of Folliculitis 2'),
                 ),
-                ListTile(
+                const ListTile(
                   title: Text('Folliculitis 3'),
                   subtitle: Text('Description of Folliculitis 3'),
                 ),
@@ -74,7 +74,7 @@ class AlopethicScreen extends StatelessWidget {
                     disease != DiseaseType.Dandruff &&
                     disease != DiseaseType.Seborrheic &&
                     disease != DiseaseType.Folliculitis)
-                  ListTile(
+                  const ListTile(
                     title: Text('Healthy'),
                     subtitle: Text('Description of Healthy'),
                   ),
@@ -89,7 +89,7 @@ class AlopethicScreen extends StatelessWidget {
 
 void main() {
   runApp(
-    MaterialApp(
+    const MaterialApp(
       home: AlopethicScreen(),
     ),
   );

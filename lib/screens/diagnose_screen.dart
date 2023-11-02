@@ -109,7 +109,7 @@ class DiagnoseScreenState extends State<DiagnoseScreen> {
 
   Future<List<String>> loadLabels() async {
     String labelsText = await rootBundle.loadString('assets/labels.txt');
-    return LineSplitter().convert(labelsText);
+    return const LineSplitter().convert(labelsText);
   }
 
   int getRed(int pixel) {
@@ -152,7 +152,7 @@ class DiagnoseScreenState extends State<DiagnoseScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Diagnose Screen'),
+        title: const Text('Diagnose Screen'),
       ),
       body: Center(
         child: Column(
@@ -169,24 +169,24 @@ class DiagnoseScreenState extends State<DiagnoseScreen> {
                     height: 300,
                     child: const Placeholder(fallbackHeight: 200),
                   ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IconButton(
-                  icon: Icon(Icons.camera),
+                  icon: const Icon(Icons.camera),
                   onPressed: _pickImageFromCamera,
                 ),
                 IconButton(
-                  icon: Icon(Icons.upload_file),
+                  icon: const Icon(Icons.upload_file),
                   onPressed: _pickImageFromGallery,
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: _imageFile != null ? _submitPicture : null,
-              child: Text('Submit'),
+              child: const Text('Submit'),
             ),
           ],
         ),

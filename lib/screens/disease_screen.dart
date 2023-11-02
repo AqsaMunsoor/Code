@@ -46,14 +46,14 @@ class _DiseaseScreenState extends State<DiseaseScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Diagnose'),
+        title: const Text('Diagnose'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 8.0),
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: Container(
                 width: screenSize.width * 0.4,
                 height: screenSize.width * 0.4,
@@ -62,7 +62,7 @@ class _DiseaseScreenState extends State<DiseaseScreen> {
                   borderRadius: BorderRadius.circular(16.0),
                 ),
                 child: IconButton(
-                  icon: Icon(Icons.camera_alt),
+                  icon: const Icon(Icons.camera_alt),
                   iconSize: screenSize.width * 0.3,
                   onPressed: () {
                     // Implement camera/gallery functionality here
@@ -70,21 +70,21 @@ class _DiseaseScreenState extends State<DiseaseScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () {
                 _detectDisease();
               },
-              child: Text('Submit'),
+              child: const Text('Submit'),
             ),
             if (_selectedDisease != null &&
                 _selectedDisease != DiseaseType.Healthy) ...[
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               ElevatedButton(
                 onPressed: () {
                   _navigateToMedicationScreen();
                 },
-                child: Text('Medication'),
+                child: const Text('Medication'),
               ),
             ],
           ],

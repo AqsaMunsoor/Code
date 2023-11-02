@@ -59,7 +59,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Future<void> _saveChanges() async {
-    Get.dialog(Center(child: CircularProgressIndicator()));
+    Get.dialog(const Center(child: CircularProgressIndicator()));
     if (_profileImage != null) {
       await uploadImage();
     } else {
@@ -112,12 +112,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Select Image'),
+          title: const Text('Select Image'),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
                 GestureDetector(
-                  child: Text('Take a photo'),
+                  child: const Text('Take a photo'),
                   onTap: () async {
                     final XFile? image =
                         await imagePicker.pickImage(source: ImageSource.camera);
@@ -129,9 +129,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Navigator.of(context).pop();
                   },
                 ),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 GestureDetector(
-                  child: Text('Choose from gallery'),
+                  child: const Text('Choose from gallery'),
                   onTap: () async {
                     final XFile? image = await imagePicker.pickImage(
                         source: ImageSource.gallery);
@@ -156,14 +156,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Logout'),
-          content: Text('Are you sure you want to logout your account?'),
+          title: const Text('Logout'),
+          content: const Text('Are you sure you want to logout your account?'),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop(); // Close the dialog
               },
-              child: Text('No'),
+              child: const Text('No'),
             ),
             TextButton(
               onPressed: () async {
@@ -171,11 +171,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 if (!mounted) return;
                 Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(builder: (context) => LoginScreen()),
+                  MaterialPageRoute(builder: (context) => const LoginScreen()),
                   (route) => false,
                 );
               },
-              child: Text('Yes'),
+              child: const Text('Yes'),
             ),
           ],
         );
@@ -190,7 +190,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Container(
       height: height,
       width: width,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage(
             'assets/1.png',
@@ -204,7 +204,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
               Row(
@@ -233,7 +233,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   if (_isEditMode)
                     IconButton(
                       onPressed: _editProfilePicture,
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.edit,
                         color: Colors.white,
                         size: 25.0,
@@ -241,7 +241,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
             ],
@@ -264,7 +264,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           borderRadius: BorderRadius.circular(30),
                           child: TextFormField(
                             controller: _nameController,
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               prefixIcon: Icon(Icons.person_rounded),
                               prefixIconColor: Colors.black45,
                               contentPadding: EdgeInsets.all(15),
@@ -286,28 +286,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                      SizedBox(
+                      const SizedBox(
                         height: 50,
                       ),
                       Text(
                         'Gender:',
                         style: GoogleFonts.robotoCondensed(fontSize: 20),
                       ),
-                      SizedBox(height: 10.0),
+                      const SizedBox(height: 10.0),
                       if (_isEditMode)
                         Row(
                           children: [
                             _buildGenderOption('Male'),
-                            SizedBox(width: 8.0),
+                            const SizedBox(width: 8.0),
                             _buildGenderOption('Female'),
                           ],
                         )
                       else
                         Text(
                           _user?.gender ?? '',
-                          style: TextStyle(fontSize: 18.0),
+                          style: const TextStyle(fontSize: 18.0),
                         ),
-                      SizedBox(
+                      const SizedBox(
                         height: 50,
                       ),
                       InkWell(
@@ -335,7 +335,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       ),
                       if (!_isEditMode) ...[
-                        SizedBox(height: 16.0),
+                        const SizedBox(height: 16.0),
                       ],
                     ],
                   )),
@@ -461,7 +461,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           shape: BoxShape.circle,
           color: _selectedGender == gender ? Colors.blue : Colors.grey,
         ),
-        padding: EdgeInsets.all(4.0),
+        padding: const EdgeInsets.all(4.0),
         child: CircleAvatar(
           radius: 16.0,
           backgroundColor: Colors.white,

@@ -104,7 +104,7 @@ class _HelpScreenState extends State<HelpScreen> {
     return Container(
       height: height,
       width: width,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage(
             'assets/1.png',
@@ -115,23 +115,18 @@ class _HelpScreenState extends State<HelpScreen> {
       child: Column(
         children: [
           Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
-                height: 50,
+              const SizedBox(
+                height: 100,
               ),
               FadeAnimation(
                 delay: 1,
-                child: CircleAvatar(
+                child: const CircleAvatar(
                   radius: 50.0,
                   backgroundColor: Colors.transparent,
                   backgroundImage: NetworkImage(
                       'https://cdn-icons-png.flaticon.com/128/4288/4288903.png'),
                 ),
-              ),
-              SizedBox(
-                height: 50,
               ),
             ],
           ),

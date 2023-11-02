@@ -63,6 +63,9 @@ dependencies:
   device_preview: ^1.1.0
   flutter_form_builder: ^9.1.1
   another_flushbar: ^1.12.30
+  sizer: ^2.0.15
+  responsive_framework: ^1.1.1
+  responsive_sizer: ^3.2.0
   # pick image
 
 dev_dependencies:

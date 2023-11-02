@@ -12,19 +12,19 @@ class MedicationScreen extends StatelessWidget {
   const MedicationScreen({super.key, required this.diseaseType});
 
   void _navigateToHomeRemediesScreen(BuildContext context) {
-    Get.to(HomeRemedies(), arguments: [diseaseType]);
+    Get.to(const HomeRemedies(), arguments: [diseaseType]);
   }
 
 //same for alopethic screen
   void _navigateToAllopathicMedicineScreen(BuildContext context) {
-    Get.to(AlopethicScreen());
+    Get.to(const AlopethicScreen());
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Medication'),
+        title: const Text('Medication'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -35,8 +35,8 @@ class MedicationScreen extends StatelessWidget {
               'assets/medicine.jpg',
               width: 200.0,
             ),
-            SizedBox(height: 20.0),
-            Spacer(),
+            const SizedBox(height: 20.0),
+            const Spacer(),
             InkWell(
               onTap: () {
                 _navigateToHomeRemediesScreen(context);
@@ -44,8 +44,8 @@ class MedicationScreen extends StatelessWidget {
               child: Container(
                 width: Get.width,
                 color: Colors.grey[300],
-                padding: EdgeInsets.all(10.0),
-                child: Row(
+                padding: const EdgeInsets.all(10.0),
+                child: const Row(
                   children: [
                     // Image.asset(
                     //   'assets/allopathic_medicine_pic.png',
@@ -60,8 +60,8 @@ class MedicationScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 16.0),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             InkWell(
               onTap: () {
                 _navigateToAllopathicMedicineScreen(context);
@@ -69,8 +69,8 @@ class MedicationScreen extends StatelessWidget {
               child: Container(
                 width: Get.width,
                 color: Colors.grey[300],
-                padding: EdgeInsets.all(10.0),
-                child: Row(
+                padding: const EdgeInsets.all(10.0),
+                child: const Row(
                   children: [
                     // Image.asset(
                     //   'assets/allopathic_medicine_pic.png',
@@ -86,7 +86,7 @@ class MedicationScreen extends StatelessWidget {
                 ),
               ),
             ),
-            Spacer(),
+            const Spacer(),
           ],
         ),
       ),

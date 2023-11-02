@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:scalpinspector_app/animation.dart';
+import 'package:scalpinspector_app/model/user_model.dart';
 
 import 'package:scalpinspector_app/screens/help_screen.dart';
 import 'package:scalpinspector_app/history.dart';
@@ -51,7 +52,7 @@ class HomeScreenState extends State<HomeScreen> {
     return Container(
       height: height,
       width: width,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage(
             'assets/1.png',
@@ -110,7 +111,7 @@ class HomeScreenState extends State<HomeScreen> {
     return Drawer(
       width: 200.0,
       child: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/1.png'),
             fit: BoxFit.cover,
@@ -120,7 +121,7 @@ class HomeScreenState extends State<HomeScreen> {
           children: [
             Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
                 Image.asset(
@@ -139,7 +140,7 @@ class HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 100,
             ),
             Column(
@@ -156,7 +157,7 @@ class HomeScreenState extends State<HomeScreen> {
                     );
                   },
                 ),
-                Gutter(),
+                const Gutter(),
                 ListTile(
                   leading: const Icon(Icons.contact_mail),
                   title: const Text('Services'),
@@ -169,7 +170,7 @@ class HomeScreenState extends State<HomeScreen> {
                     );
                   },
                 ),
-                Gutter(),
+                const Gutter(),
                 ListTile(
                   leading: const Icon(Icons.feedback),
                   title: const Text('Feedback'),
@@ -181,7 +182,7 @@ class HomeScreenState extends State<HomeScreen> {
                     );
                   },
                 ),
-                Gutter(),
+                const Gutter(),
                 //logout
                 ListTile(
                   leading: const Icon(Icons.logout),
@@ -230,6 +231,7 @@ class HomeContent extends StatefulWidget {
 }
 
 class _HomeContentState extends State<HomeContent> {
+  UserModel? _user;
   List<Color> customColor = <Color>[
     Colors.blue.shade200,
     Colors.orange.shade200,
@@ -263,7 +265,7 @@ class _HomeContentState extends State<HomeContent> {
       case 0:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => DiagnoseScreen()),
+          MaterialPageRoute(builder: (context) => const DiagnoseScreen()),
         );
         break;
       case 1:
@@ -275,13 +277,13 @@ class _HomeContentState extends State<HomeContent> {
       case 2:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => ChatbotScreen()),
+          MaterialPageRoute(builder: (context) => const ChatbotScreen()),
         );
         break;
       case 3:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => HistoryScreen()),
+          MaterialPageRoute(builder: (context) => const HistoryScreen()),
         );
         break;
     }
@@ -299,16 +301,15 @@ class _HomeContentState extends State<HomeContent> {
           children: [
             FadeAnimation(
               delay: 1,
-              child: const CircleAvatar(
+              child: CircleAvatar(
                 radius: 40.0,
-                backgroundColor: Colors.transparent,
                 backgroundImage: NetworkImage(
-                    'https://www.revixpert.ch/app/uploads/portrait-placeholder.jpg'),
+                  FirebaseAuth.instance.currentUser!.photoURL ??
+                      'https://www.revixpert.ch/app/uploads/portrait-placeholder.jpg',
+                ),
               ),
             ),
-            const SizedBox(
-              height: 50,
-            ),
+            Gutter(),
             FadeAnimation(
               delay: 1.4,
               child: Text(
@@ -321,12 +322,12 @@ class _HomeContentState extends State<HomeContent> {
                 ),
               ),
             ),
-            Gutter(),
+            const Gutter(),
           ],
         ),
         Expanded(
           child: Container(
-            padding: const EdgeInsets.only(left: 20, right: 20, top: 40),
+            padding: const EdgeInsets.only(left: 20, right: 20, top: 50),
             width: width,
             height: height / 1.5,
             child: FadeAnimation(
@@ -377,7 +378,7 @@ class _HomeContentState extends State<HomeContent> {
                                       ),
                                     ),
                                     const Gutter(),
-                                    Icon(
+                                    const Icon(
                                       Icons.arrow_forward_ios,
                                       color: Colors.white,
                                       size: 20,

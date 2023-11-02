@@ -113,11 +113,6 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
             ),
           ).show(context);
-          // Get.snackbar(
-          //   'Success',
-          //   'Your account has been created.',
-          //   snackPosition: SnackPosition.BOTTOM,
-          // );
           await Future.delayed(const Duration(seconds: 2));
           if (user != null) {
             user!.updateDisplayName("$firstName $lastName");
@@ -221,45 +216,50 @@ class _SignupScreenState extends State<SignupScreen> {
         body: Column(
           children: [
             Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                const SizedBox(
-                  height: 30,
-                ),
+                Gutter(),
                 FadeAnimation(
                   delay: 1,
                   child: SizedBox(
-                    child: Image.asset('assets/scalp_logo.png'),
                     width: 75,
                     height: 75,
+                    child: Image.asset('assets/scalp_logo.png'),
                   ),
                 ),
-                const Gutter(),
                 FadeAnimation(
                   delay: 1.2,
                   child: Text(
                     'Scalp Inspector',
                     style: GoogleFonts.robotoCondensed(
-                      fontSize: 30,
+                      fontSize: 35,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 3,
                     ),
                   ),
                 ),
-              ],
-            ),
-            FadeAnimation(
-              delay: 1.4,
-              child: Text(
-                'Sign Up',
-                style: GoogleFonts.robotoCondensed(
-                  fontSize: 30,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 3,
+                FadeAnimation(
+                  delay: 1.4,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        'Sign Up',
+                        style: GoogleFonts.robotoCondensed(
+                          fontSize: 30,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 3,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      )
+                    ],
+                  ),
                 ),
-              ),
+              ],
             ),
             Expanded(
               child: SingleChildScrollView(

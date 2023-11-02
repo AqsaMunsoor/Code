@@ -19,16 +19,16 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     super.initState();
     animationController = AnimationController(
-      duration: Duration(seconds: 2),
+      duration: const Duration(seconds: 2),
       vsync: this,
     );
     animation = Tween<double>(begin: 0, end: 1).animate(animationController);
     animationController.forward();
-    Timer(Duration(seconds: 4), () {
+    Timer(const Duration(seconds: 4), () {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => HomeScreen(),
+          builder: (context) => const HomeScreen(),
         ),
       );
     });
@@ -43,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage('assets/3.png'),
           fit: BoxFit.cover,
@@ -58,7 +58,7 @@ class _SplashScreenState extends State<SplashScreen>
               FadeAnimation(
                 delay: 1,
                 child: Padding(
-                  padding: EdgeInsets.only(
+                  padding: const EdgeInsets.only(
                       bottom: 80.0), // Adjust the padding value as needed
                   child: Image.asset(
                     'assets/scalp_logo.png', // Replace with the path to your image
@@ -117,7 +117,7 @@ class _AnimatedGradientState extends State<AnimatedGradient> {
         body: Stack(
       children: [
         AnimatedContainer(
-          duration: Duration(seconds: 2),
+          duration: const Duration(seconds: 2),
           onEnd: () {
             setState(() {
               index = index + 1;
@@ -138,7 +138,7 @@ class _AnimatedGradientState extends State<AnimatedGradient> {
             'assets/scalp_logo.png',
           ),
         ),
-        Positioned(
+        const Positioned(
           bottom: 180,
           left: 50,
           right: 50,
@@ -178,7 +178,7 @@ class _AnimatingBg1State extends State<AnimatingBg1>
   void initState() {
     super.initState();
     Timer(
-      Duration(microseconds: 0),
+      const Duration(microseconds: 0),
       () {
         setState(
           () {
@@ -192,7 +192,7 @@ class _AnimatingBg1State extends State<AnimatingBg1>
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      duration: Duration(seconds: 2),
+      duration: const Duration(seconds: 2),
       onEnd: () {
         setState(
           () {

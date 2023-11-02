@@ -6,18 +6,25 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.sizeOf(context).width;
+    final height = MediaQuery.sizeOf(context).height;
     return Scaffold(
-      body: Center(
-          child: ElevatedButton(
-        child: Text('press'),
-        onPressed: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => LoginScreen(),
-              ));
-        },
-      )),
+      body: Column(
+        children: [
+          Center(
+            child: Text(
+              '$height',
+              style: TextStyle(fontSize: 30),
+            ),
+          ),
+          Center(
+            child: Text(
+              '$width',
+              style: TextStyle(fontSize: 30),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
