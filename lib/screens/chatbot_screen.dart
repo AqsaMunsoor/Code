@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gutter/flutter_gutter.dart';
+import 'package:get/get.dart';
 import 'dart:async';
+
+import 'package:google_fonts/google_fonts.dart';
+import 'package:scalpinspector_app/animation.dart';
 
 class ChatbotApp extends StatelessWidget {
   const ChatbotApp({super.key});
@@ -95,11 +100,7 @@ class _ChatbotScreenState extends State<ChatbotScreen>
       } else if (message.toLowerCase() == 'yes') {
         _isAskingCity = true;
         _addMessage(
-          'Please select your city from the options below:',
-          false,
-        );
-        _addMessage(
-          '1. Islamabad\n2. Rawalpindi\n3. Lahore\n4. Faisalabad\n5. Multan\n6. Gujranwala\n7. Sialkot\n8. Karachi\n9. Peshawar\n10. Abbottabad\n11. Jhelum',
+          'Please select your city from the options below: \n 1. Islamabad\n2. Rawalpindi\n3. Lahore\n4. Faisalabad\n5. Multan\n6. Gujranwala\n7. Sialkot\n8. Karachi\n9. Peshawar\n10. Abbottabad\n11. Jhelum',
           false,
         );
       }
@@ -212,80 +213,189 @@ class _ChatbotScreenState extends State<ChatbotScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Chatbot'),
-      ),
-      body: Column(
-        children: [
-          SlideTransition(
-            position: _animation,
-            child: Container(
-              padding: EdgeInsets.all(16.0),
-              child: Column(
+    final width = MediaQuery.sizeOf(context).width;
+    final height = MediaQuery.sizeOf(context).height;
+    return Container(
+        height: height,
+        width: width,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(
+              'assets/pink_back.png',
+            ),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Scaffold(
+          resizeToAvoidBottomInset: true,
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            iconTheme: IconThemeData(
+              color: Colors.white,
+              size: 35,
+            ),
+          ),
+          body: Column(
+            children: [
+              Column(
                 children: [
-                  Image.asset(
-                    'assets/robot_pic.png',
-                    width: 60.0,
-                    height: 60.0,
-                  ),
-                  SizedBox(height: 16.0),
-                  Text(
-                    'How may I help you?',
-                    style: TextStyle(
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.bold,
+                  FadeAnimation(
+                    delay: 1,
+                    child: SizedBox(
+                      child: Image.network(
+                          'https://cdn-icons-png.flaticon.com/128/6784/6784507.png'),
+                      width: 100,
+                      height: 100,
                     ),
                   ),
                 ],
               ),
-            ),
-          ),
-          Expanded(
-            child: ListView.builder(
-              reverse: false,
-              itemCount: _chatMessages.length,
-              itemBuilder: (BuildContext context, int index) {
-                ChatMessage chatMessage = _chatMessages[index];
-                return ListTile(
-                  title: Text(
-                    chatMessage.text,
-                    style: TextStyle(
-                      color: chatMessage.isUserMessage
-                          ? Colors.blue
-                          : Colors.black,
-                    ),
-                    textAlign: chatMessage.isUserMessage
-                        ? TextAlign.end
-                        : TextAlign.start,
-                  ),
-                );
-              },
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: _messageController,
-                    decoration: InputDecoration(
-                      hintText: 'Type your question...',
-                    ),
-                  ),
+              Spacer(),
+              Expanded(
+                child: ListView.builder(
+                  reverse: false,
+                  itemCount: _chatMessages.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    ChatMessage chatMessage = _chatMessages[index];
+                    return Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Material(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(50),
+                          bottomLeft: chatMessage.isUserMessage
+                              ? Radius.circular(50)
+                              : Radius.circular(0),
+                          topRight: Radius.circular(50),
+                          bottomRight: chatMessage.isUserMessage
+                              ? Radius.circular(0)
+                              : Radius.circular(50),
+                        ),
+                        color: chatMessage.isUserMessage
+                            ? Colors.pink.shade200
+                            : Colors.white,
+                        elevation: 5,
+                        child: Container(
+                          constraints: BoxConstraints(
+                            maxWidth: double.infinity,
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 20),
+                          child: Text(
+                            chatMessage.text,
+                            style: GoogleFonts.roboto(
+                              color: chatMessage.isUserMessage
+                                  ? Colors.white
+                                  : Colors.pink.shade200,
+                              fontSize: 15,
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
                 ),
-                SizedBox(width: 8.0),
-                ElevatedButton(
-                  onPressed: _handleSendMessage,
-                  child: Text('Send'),
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        controller: _messageController,
+                        decoration: InputDecoration(
+                          hintText: 'Type your question...',
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 8.0),
+                    IconButton(
+                      onPressed: _handleSendMessage,
+                      icon: Icon(
+                        Icons.send,
+                        color: Colors.pink,
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
-    );
+        ));
+    // return Scaffold(
+    //   appBar: AppBar(
+    //     title: Text('Chatbot'),
+    //   ),
+    //   body: Column(
+    //     children: [
+    //       SlideTransition(
+    //         position: _animation,
+    //         child: Container(
+    //           padding: EdgeInsets.all(16.0),
+    //           child: Column(
+    //             children: [
+    //               Image.asset(
+    //                 'assets/robot_pic.png',
+    //                 width: 60.0,
+    //                 height: 60.0,
+    //               ),
+    //               SizedBox(height: 16.0),
+    //               Text(
+    //                 'How may I help you?',
+    //                 style: TextStyle(
+    //                   fontSize: 18.0,
+    //                   fontWeight: FontWeight.bold,
+    //                 ),
+    //               ),
+    //             ],
+    //           ),
+    //         ),
+    //       ),
+    //       Expanded(
+    //         child: ListView.builder(
+    //           reverse: false,
+    //           itemCount: _chatMessages.length,
+    //           itemBuilder: (BuildContext context, int index) {
+    //             ChatMessage chatMessage = _chatMessages[index];
+    //             return ListTile(
+    //               title: Text(
+    //                 chatMessage.text,
+    //                 style: TextStyle(
+    //                   color: chatMessage.isUserMessage
+    //                       ? Colors.blue
+    //                       : Colors.black,
+    //                 ),
+    //                 textAlign: chatMessage.isUserMessage
+    //                     ? TextAlign.end
+    //                     : TextAlign.start,
+    //               ),
+    //             );
+    //           },
+    //         ),
+    //       ),
+    //       Container(
+    //         padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+    //         child: Row(
+    //           children: [
+    //             Expanded(
+    //               child: TextField(
+    //                 controller: _messageController,
+    //                 decoration: InputDecoration(
+    //                   hintText: 'Type your question...',
+    //                 ),
+    //               ),
+    //             ),
+    //             SizedBox(width: 8.0),
+    //             ElevatedButton(
+    //               onPressed: _handleSendMessage,
+    //               child: Text('Send'),
+    //             ),
+    //           ],
+    //         ),
+    //       ),
+    //     ],
+    //   ),
+    // );
   }
 }
 

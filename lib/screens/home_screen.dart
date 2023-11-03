@@ -9,7 +9,7 @@ import 'package:scalpinspector_app/animation.dart';
 import 'package:scalpinspector_app/model/user_model.dart';
 
 import 'package:scalpinspector_app/screens/help_screen.dart';
-import 'package:scalpinspector_app/history.dart';
+import 'package:scalpinspector_app/screens/history_screen.dart';
 import 'package:scalpinspector_app/screens/chatbot_screen.dart';
 import 'package:scalpinspector_app/screens/diagnose_screen.dart';
 
@@ -55,7 +55,7 @@ class HomeScreenState extends State<HomeScreen> {
       decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage(
-            'assets/1.png',
+            'assets/login_back.png',
           ),
           fit: BoxFit.cover,
         ),
@@ -109,7 +109,7 @@ class HomeScreenState extends State<HomeScreen> {
 
   Widget _buildDrawer() {
     return Drawer(
-      width: 200.0,
+      width: 250.0,
       child: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -131,7 +131,7 @@ class HomeScreenState extends State<HomeScreen> {
                 ),
                 Text(
                   'hi, ${FirebaseAuth.instance.currentUser!.displayName}',
-                  style: GoogleFonts.robotoCondensed(
+                  style: GoogleFonts.roboto(
                     fontSize: 20,
                     color: Colors.white,
                     letterSpacing: 2,
@@ -146,8 +146,15 @@ class HomeScreenState extends State<HomeScreen> {
             Column(
               children: [
                 ListTile(
-                  leading: const Icon(Icons.info),
-                  title: const Text('About'),
+                  leading: const Icon(
+                    Icons.info,
+                  ),
+                  title: Text(
+                    'About',
+                    style: GoogleFonts.roboto(
+                      fontSize: 20,
+                    ),
+                  ),
                   onTap: () {
                     Navigator.push(
                       context,
@@ -159,8 +166,15 @@ class HomeScreenState extends State<HomeScreen> {
                 ),
                 const Gutter(),
                 ListTile(
-                  leading: const Icon(Icons.contact_mail),
-                  title: const Text('Services'),
+                  leading: const Icon(
+                    Icons.contact_mail,
+                  ),
+                  title: Text(
+                    'Services',
+                    style: GoogleFonts.roboto(
+                      fontSize: 20,
+                    ),
+                  ),
                   onTap: () {
                     Navigator.push(
                       context,
@@ -172,8 +186,15 @@ class HomeScreenState extends State<HomeScreen> {
                 ),
                 const Gutter(),
                 ListTile(
-                  leading: const Icon(Icons.feedback),
-                  title: const Text('Feedback'),
+                  leading: const Icon(
+                    Icons.feedback,
+                  ),
+                  title: Text(
+                    'Feedback',
+                    style: GoogleFonts.roboto(
+                      fontSize: 20,
+                    ),
+                  ),
                   onTap: () {
                     // Navigate to the Feedback screen
                     Navigator.push(
@@ -185,8 +206,15 @@ class HomeScreenState extends State<HomeScreen> {
                 const Gutter(),
                 //logout
                 ListTile(
-                  leading: const Icon(Icons.logout),
-                  title: const Text('Logout'),
+                  leading: const Icon(
+                    Icons.logout,
+                  ),
+                  title: Text(
+                    'Logout',
+                    style: GoogleFonts.roboto(
+                      fontSize: 20,
+                    ),
+                  ),
                   onTap: () async {
                     //make a dialoge
                     Get.dialog(AlertDialog(
@@ -291,8 +319,6 @@ class _HomeContentState extends State<HomeContent> {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.sizeOf(context).width;
-    final height = MediaQuery.sizeOf(context).height;
     return Column(
       children: [
         Column(
@@ -315,7 +341,7 @@ class _HomeContentState extends State<HomeContent> {
               child: Text(
                 '${FirebaseAuth.instance.currentUser!.displayName}',
                 style: GoogleFonts.robotoCondensed(
-                  fontSize: 24.0,
+                  fontSize: 30,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                   letterSpacing: 2,
@@ -327,9 +353,7 @@ class _HomeContentState extends State<HomeContent> {
         ),
         Expanded(
           child: Container(
-            padding: const EdgeInsets.only(left: 20, right: 20, top: 50),
-            width: width,
-            height: height / 1.5,
+            padding: const EdgeInsets.only(left: 20, right: 20, top: 80),
             child: FadeAnimation(
               delay: 1.6,
               child: StaggeredGridView.countBuilder(
@@ -338,14 +362,14 @@ class _HomeContentState extends State<HomeContent> {
                 crossAxisCount: 2,
                 itemCount: 4,
                 itemBuilder: (context, index) {
-                  return InkWell(
+                  return GestureDetector(
                     onTap: () {
                       _navigateToScreen(index);
                     },
                     child: Stack(
                       children: [
                         Container(
-                          color: Colors.white,
+                          color: Colors.transparent,
                           height: 200,
                         ),
                         Positioned(
@@ -370,7 +394,7 @@ class _HomeContentState extends State<HomeContent> {
                                   children: [
                                     Text(
                                       titles[index],
-                                      style: GoogleFonts.robotoCondensed(
+                                      style: GoogleFonts.roboto(
                                         fontSize: 20,
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,

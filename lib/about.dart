@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AboutScreen extends StatelessWidget {
+  const AboutScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,6 +77,7 @@ class FeatureItem extends StatelessWidget {
   final String description;
 
   const FeatureItem({
+    super.key,
     required this.icon,
     required this.title,
     required this.description,

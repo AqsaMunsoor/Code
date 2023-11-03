@@ -297,9 +297,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       if (_isEditMode)
                         Row(
                           children: [
-                            _buildGenderOption('Male'),
+                            _buildMaleOption('Male'),
                             const SizedBox(width: 8.0),
-                            _buildGenderOption('Female'),
+                            _buildFemaleOption('Female'),
                           ],
                         )
                       else
@@ -344,114 +344,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ],
       ),
     );
-    // return Scaffold(
-    //   appBar: AppBar(
-    //     automaticallyImplyLeading: false, // Remove the back button
-    //     title: Text('Profile'),
-    //     centerTitle: true,
-    //   ),
-    //   body: SingleChildScrollView(
-    //     padding: EdgeInsets.all(16.0),
-    //     child: Center(
-    //       child: Column(
-    //         crossAxisAlignment: CrossAxisAlignment.center,
-    //         children: [
-    //           Container(
-    //             alignment: Alignment.center,
-    //             child: Stack(
-    //               alignment: Alignment.bottomRight,
-    //               children: [
-    //                 _profileImage != null
-    //                     ? Container(
-    //                         width: 150.0,
-    //                         height: 150.0,
-    //                         decoration: BoxDecoration(
-    //                           shape: BoxShape.circle,
-    //                           image: DecorationImage(
-    //                             image: FileImage(File(_profileImage!.path)),
-    //                             fit: BoxFit.cover,
-    //                           ),
-    //                         ),
-    //                       )
-    //                     : CircleAvatar(
-    //                         radius: 70.0,
-    //                         backgroundImage: NetworkImage(
-    //                           _user?.photoUrl ??
-    //                               'https://www.revixpert.ch/app/uploads/portrait-placeholder.jpg',
-    //                         ),
-    //                       ),
-    //                 if (_isEditMode)
-    //                   Padding(
-    //                     padding: const EdgeInsets.all(8.0),
-    //                     child: IconButton(
-    //                       onPressed: _editProfilePicture,
-    //                       icon: Icon(
-    //                         Icons.edit,
-    //                         color: Colors.white,
-    //                         size: 25.0,
-    //                       ),
-    //                     ),
-    //                   ),
-    //               ],
-    //             ),
-    //           ),
-    //           SizedBox(height: 16.0),
-    //           if (_isEditMode)
-    //             TextFormField(
-    //               controller: _nameController,
-    //               decoration: InputDecoration(labelText: 'Name'),
-    //             )
-    //           else
-    //             Text(
-    //               (_user?.firstName ?? '') + ' ' + (_user?.lastName ?? ''),
-    //               style: TextStyle(
-    //                 fontSize: 24.0,
-    //                 fontWeight: FontWeight.bold,
-    //               ),
-    //             ),
-    //           SizedBox(height: 24.0),
-    //           Container(
-    //             child: Column(
-    //               mainAxisAlignment: MainAxisAlignment.start,
-    //               crossAxisAlignment: CrossAxisAlignment.start,
-    //               children: [
-    //                 Text(
-    //                   'Gender:',
-    //                   style: TextStyle(fontSize: 12.0),
-    //                 ),
-    //                 SizedBox(height: 10.0),
-    //                 if (_isEditMode)
-    //                   Row(
-    //                     children: [
-    //                       _buildGenderOption('Male'),
-    //                       SizedBox(width: 8.0),
-    //                       _buildGenderOption('Female'),
-    //                     ],
-    //                   )
-    //                 else
-    //                   Text(
-    //                     _user?.gender ?? '',
-    //                     style: TextStyle(fontSize: 18.0),
-    //                   ),
-    //               ],
-    //             ),
-    //           ),
-    //           SizedBox(height: 50.0),
-    //           ElevatedButton(
-    //             onPressed: _isEditMode ? _saveChanges : _toggleEditMode,
-    //             child: Text(_isEditMode ? 'Save' : 'Edit Profile'),
-    //           ),
-    //           if (!_isEditMode) ...[
-    //             SizedBox(height: 16.0),
-    //           ],
-    //         ],
-    //       ),
-    //     ),
-    //   ),
-    // );
   }
 
-  Widget _buildGenderOption(String gender) {
+  Widget _buildMaleOption(String gender) {
     return GestureDetector(
       onTap: () {
         _selectGender(gender);
@@ -468,6 +363,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
           child: Icon(
             gender == 'Male' ? Icons.male : Icons.female,
             color: _selectedGender == gender ? Colors.blue : Colors.grey,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildFemaleOption(String gender) {
+    return GestureDetector(
+      onTap: () {
+        _selectGender(gender);
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: _selectedGender == gender ? Colors.pink : Colors.grey,
+        ),
+        padding: const EdgeInsets.all(4.0),
+        child: CircleAvatar(
+          radius: 16.0,
+          backgroundColor: Colors.white,
+          child: Icon(
+            gender == 'Female' ? Icons.female : Icons.male,
+            color: _selectedGender == gender ? Colors.pink : Colors.grey,
           ),
         ),
       ),

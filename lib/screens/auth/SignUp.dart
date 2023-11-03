@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, library_private_types_in_public_api, file_names
 
 import 'package:another_flushbar/flushbar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -13,6 +13,8 @@ import 'package:scalpinspector_app/model/user_model.dart';
 import 'package:scalpinspector_app/screens/splash_screen.dart';
 
 class SignupScreen extends StatefulWidget {
+  const SignupScreen({super.key});
+
   @override
   _SignupScreenState createState() => _SignupScreenState();
 }
@@ -118,7 +120,7 @@ class _SignupScreenState extends State<SignupScreen> {
             user!.updateDisplayName("$firstName $lastName");
             userModel.uid = user!.uid;
             initFirestore(userModel);
-            Get.to(SplashScreen());
+            Get.to(const SplashScreen());
           }
         } else {
           Flushbar(
@@ -202,10 +204,10 @@ class _SignupScreenState extends State<SignupScreen> {
     return Container(
       height: height,
       width: width,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage(
-            'assets/2.png',
+            'assets/signup_back.png',
           ),
           fit: BoxFit.cover,
         ),
@@ -218,7 +220,7 @@ class _SignupScreenState extends State<SignupScreen> {
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Gutter(),
+                const Gutter(),
                 FadeAnimation(
                   delay: 1,
                   child: SizedBox(
@@ -253,7 +255,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           letterSpacing: 3,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 20,
                       )
                     ],
@@ -264,13 +266,11 @@ class _SignupScreenState extends State<SignupScreen> {
             Expanded(
               child: SingleChildScrollView(
                 child: Container(
-                  padding: const EdgeInsets.only(left: 20, right: 20, top: 50),
-                  width: width,
-                  height: height / 1,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 70),
                   child: Form(
                     key: _formKey,
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         FadeAnimation(
                           delay: 1.6,
@@ -281,12 +281,12 @@ class _SignupScreenState extends State<SignupScreen> {
                               controller: _firstNameController,
                               decoration: InputDecoration(
                                 errorText: _firstNameError,
-                                prefixIcon: Icon(Icons.person_rounded),
+                                prefixIcon: const Icon(Icons.person_rounded),
                                 prefixIconColor: Colors.black45,
-                                contentPadding: EdgeInsets.all(15),
+                                contentPadding: const EdgeInsets.all(15),
                                 border: InputBorder.none,
                                 hintText: "First Name",
-                                hintStyle: TextStyle(
+                                hintStyle: const TextStyle(
                                   color: Colors.black45,
                                 ),
                               ),
@@ -311,12 +311,12 @@ class _SignupScreenState extends State<SignupScreen> {
                               controller: _lastNameController,
                               decoration: InputDecoration(
                                 errorText: _lastNameError,
-                                prefixIcon: Icon(Icons.person_rounded),
+                                prefixIcon: const Icon(Icons.person_rounded),
                                 prefixIconColor: Colors.black45,
-                                contentPadding: EdgeInsets.all(15),
+                                contentPadding: const EdgeInsets.all(15),
                                 border: InputBorder.none,
                                 hintText: "Last Name",
-                                hintStyle: TextStyle(
+                                hintStyle: const TextStyle(
                                   color: Colors.black45,
                                 ),
                               ),
@@ -341,12 +341,12 @@ class _SignupScreenState extends State<SignupScreen> {
                               controller: _emailController,
                               decoration: InputDecoration(
                                 errorText: _emailError,
-                                prefixIcon: Icon(Icons.email_rounded),
+                                prefixIcon: const Icon(Icons.email_rounded),
                                 prefixIconColor: Colors.black45,
-                                contentPadding: EdgeInsets.all(15),
+                                contentPadding: const EdgeInsets.all(15),
                                 border: InputBorder.none,
                                 hintText: "Email",
-                                hintStyle: TextStyle(
+                                hintStyle: const TextStyle(
                                   color: Colors.black45,
                                 ),
                               ),
@@ -372,12 +372,12 @@ class _SignupScreenState extends State<SignupScreen> {
                               obscureText: true,
                               decoration: InputDecoration(
                                 errorText: _passwordError,
-                                prefixIcon: Icon(Icons.lock_rounded),
+                                prefixIcon: const Icon(Icons.lock_rounded),
                                 prefixIconColor: Colors.black45,
-                                contentPadding: EdgeInsets.all(15),
+                                contentPadding: const EdgeInsets.all(15),
                                 border: InputBorder.none,
                                 hintText: "Password",
-                                hintStyle: TextStyle(
+                                hintStyle: const TextStyle(
                                   color: Colors.black45,
                                 ),
                               ),
@@ -403,12 +403,12 @@ class _SignupScreenState extends State<SignupScreen> {
                               obscureText: true,
                               decoration: InputDecoration(
                                 errorText: _confirmPasswordError,
-                                prefixIcon: Icon(Icons.lock_rounded),
+                                prefixIcon: const Icon(Icons.lock_rounded),
                                 prefixIconColor: Colors.black45,
-                                contentPadding: EdgeInsets.all(15),
+                                contentPadding: const EdgeInsets.all(15),
                                 border: InputBorder.none,
                                 hintText: "Confirm Password",
-                                hintStyle: TextStyle(
+                                hintStyle: const TextStyle(
                                   color: Colors.black45,
                                 ),
                               ),

@@ -130,51 +130,53 @@ class _HelpScreenState extends State<HelpScreen> {
               ),
             ],
           ),
-          Container(
-            padding: const EdgeInsets.only(left: 20, right: 20, top: 30),
-            width: width,
-            height: height / 1.5,
-            child: FadeAnimation(
-              delay: 1.4,
-              child: ListView.builder(
-                itemCount: 4,
-                itemBuilder: (context, index) {
-                  return InkWell(
-                    onTap: () {
-                      _navigateToScreen(index);
-                    },
-                    child: Container(
-                      height: width / 5.5,
-                      margin: EdgeInsets.symmetric(
-                        horizontal: width / 20,
-                        vertical: width / 30,
-                      ),
-                      decoration: BoxDecoration(
-                          color: customColor[index],
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(20),
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.1),
-                              blurRadius: 30,
-                              spreadRadius: 5,
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.only(left: 20, right: 20, top: 30),
+              width: width,
+              height: height / 1.5,
+              child: FadeAnimation(
+                delay: 1.4,
+                child: ListView.builder(
+                  itemCount: 4,
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      onTap: () {
+                        _navigateToScreen(index);
+                      },
+                      child: Container(
+                        height: width / 5.5,
+                        margin: EdgeInsets.symmetric(
+                          horizontal: width / 20,
+                          vertical: width / 30,
+                        ),
+                        decoration: BoxDecoration(
+                            color: customColor[index],
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(20),
                             ),
-                          ]),
-                      child: Center(
-                        child: Text(
-                          titles[index],
-                          style: GoogleFonts.robotoCondensed(
-                            fontSize: 20,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 3,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.1),
+                                blurRadius: 30,
+                                spreadRadius: 5,
+                              ),
+                            ]),
+                        child: Center(
+                          child: Text(
+                            titles[index],
+                            style: GoogleFonts.robotoCondensed(
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 3,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
             ),
           ),

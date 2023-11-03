@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'dart:async';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
@@ -35,11 +37,11 @@ class DatabaseHelper {
       onCreate: (Database db, int version) async {
         await db.execute(
           'CREATE TABLE Results('
-              'id INTEGER PRIMARY KEY AUTOINCREMENT, '
-              'medication TEXT, '
-              'disease TEXT, '
-              'date TEXT, '
-              'improvement REAL)',
+          'id INTEGER PRIMARY KEY AUTOINCREMENT, '
+          'medication TEXT, '
+          'disease TEXT, '
+          'date TEXT, '
+          'improvement REAL)',
         );
       },
     );

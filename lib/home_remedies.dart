@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
@@ -12,7 +14,7 @@ class HomeRemedies extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home Remedies'),
+        title: const Text('Home Remedies'),
       ),
       body: Column(
         children: [
@@ -20,54 +22,54 @@ class HomeRemedies extends StatelessWidget {
             child: ListView(
               children: [
                 if (disease == DiseaseType.Alopecia)
-                  ListTile(
+                  const ListTile(
                     title: Text('Alopecia'),
                     subtitle: Text('Description of alopecia'),
                   ),
-                ListTile(
+                const ListTile(
                   title: Text('Alopecia 2'),
                   subtitle: Text('Description of alopecia 2'),
                 ),
-                ListTile(
+                const ListTile(
                   title: Text('Alopecia 3'),
                   subtitle: Text('Description of alopecia 3'),
                 ),
                 if (disease == DiseaseType.Dandruff)
-                  ListTile(
+                  const ListTile(
                     title: Text('Dandruff'),
                     subtitle: Text('Description of Dandrufff'),
                   ),
-                ListTile(
+                const ListTile(
                   title: Text('Dandruff 2'),
                   subtitle: Text('Description of Dandrufff 2'),
                 ),
-                ListTile(
+                const ListTile(
                   title: Text('Dandruff 3'),
                   subtitle: Text('Description of Dandrufff 3'),
                 ),
                 if (disease == DiseaseType.Seborrheic)
-                  ListTile(
+                  const ListTile(
                     title: Text('Seborrheic'),
                     subtitle: Text('Description of Seborrheic'),
                   ),
-                ListTile(
+                const ListTile(
                   title: Text('Seborrheic 2'),
                   subtitle: Text('Description of Seborrheic 2'),
                 ),
-                ListTile(
+                const ListTile(
                   title: Text('Seborrheic 3'),
                   subtitle: Text('Description of Seborrheic 3'),
                 ),
                 if (disease == DiseaseType.Folliculitis)
-                  ListTile(
+                  const ListTile(
                     title: Text('Folliculitis'),
                     subtitle: Text('Description of Folliculitis'),
                   ),
-                ListTile(
+                const ListTile(
                   title: Text('Folliculitis 2'),
                   subtitle: Text('Description of Folliculitis 2'),
                 ),
-                ListTile(
+                const ListTile(
                   title: Text('Folliculitis 3'),
                   subtitle: Text('Description of Folliculitis 3'),
                 ),
@@ -75,7 +77,7 @@ class HomeRemedies extends StatelessWidget {
                     disease != DiseaseType.Dandruff &&
                     disease != DiseaseType.Seborrheic &&
                     disease != DiseaseType.Folliculitis)
-                  ListTile(
+                  const ListTile(
                     title: Text('Healthy'),
                     subtitle: Text('Description of Healthy'),
                   ),
@@ -90,7 +92,7 @@ class HomeRemedies extends StatelessWidget {
 
 void main() {
   runApp(
-    MaterialApp(
+    const MaterialApp(
       home: HomeRemedies(),
     ),
   );

@@ -1,11 +1,17 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:scalpinspector_app/animation.dart';
+import 'package:scalpinspector_app/screens/auth/login_screen.dart';
 import 'home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
@@ -25,12 +31,25 @@ class _SplashScreenState extends State<SplashScreen>
     animation = Tween<double>(begin: 0, end: 1).animate(animationController);
     animationController.forward();
     Timer(const Duration(seconds: 4), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const HomeScreen(),
-        ),
-      );
+      (FirebaseAuth.instance.currentUser != null)
+          ? Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const HomeScreen(),
+              ),
+            )
+          : Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const LoginScreen(),
+              ),
+            );
+      // Navigator.pushReplacement(
+      //   context,
+      //   MaterialPageRoute(
+      //     builder: (context) => const HomeScreen(),
+      //   ),
+      // );
     });
   }
 
@@ -45,7 +64,7 @@ class _SplashScreenState extends State<SplashScreen>
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('assets/3.png'),
+          image: AssetImage('assets/splash_back.png'),
           fit: BoxFit.cover,
         ),
       ),
@@ -88,6 +107,8 @@ class _SplashScreenState extends State<SplashScreen>
 }
 
 class AnimatedGradient extends StatefulWidget {
+  const AnimatedGradient({super.key});
+
   @override
   _AnimatedGradientState createState() => _AnimatedGradientState();
 }
@@ -155,6 +176,8 @@ class _AnimatedGradientState extends State<AnimatedGradient> {
 }
 
 class AnimatingBg1 extends StatefulWidget {
+  const AnimatingBg1({super.key});
+
   @override
   _AnimatingBg1State createState() => _AnimatingBg1State();
 }
