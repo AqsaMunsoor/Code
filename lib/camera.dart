@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:async';
 import 'dart:io';
 import 'package:camera/camera.dart';
@@ -35,6 +37,7 @@ class CameraScreen extends StatefulWidget {
   const CameraScreen({Key? key, required this.cameras}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _CameraScreenState createState() => _CameraScreenState();
 }
 

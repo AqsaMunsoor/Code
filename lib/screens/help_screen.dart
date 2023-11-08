@@ -51,6 +51,13 @@ class _HelpScreenState extends State<HelpScreen> {
     Colors.green.shade200
   ];
 
+  List<String> images = [
+    'https://cdn-icons-png.flaticon.com/128/8744/8744051.png',
+    'https://cdn-icons-png.flaticon.com/128/8945/8945503.png',
+    'https://cdn-icons-png.flaticon.com/128/6966/6966447.png',
+    'https://cdn-icons-png.flaticon.com/128/10703/10703016.png'
+  ];
+
   // List<String> images = [
   List<String> titles = [
     'FaQs',
@@ -101,87 +108,87 @@ class _HelpScreenState extends State<HelpScreen> {
   Widget build(BuildContext context) {
     final width = MediaQuery.sizeOf(context).width;
     final height = MediaQuery.sizeOf(context).height;
-    return Container(
-      height: height,
-      width: width,
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(
-            'assets/1.png',
-          ),
-          fit: BoxFit.cover,
+    return Column(
+      children: [
+        const Column(
+          children: [
+            SizedBox(
+              height: 100,
+            ),
+            FadeAnimation(
+              delay: 1,
+              child: CircleAvatar(
+                radius: 50.0,
+                backgroundColor: Colors.transparent,
+                backgroundImage: NetworkImage(
+                    'https://cdn-icons-png.flaticon.com/128/4288/4288903.png'),
+              ),
+            ),
+          ],
         ),
-      ),
-      child: Column(
-        children: [
-          Column(
-            children: [
-              const SizedBox(
-                height: 100,
-              ),
-              FadeAnimation(
-                delay: 1,
-                child: const CircleAvatar(
-                  radius: 50.0,
-                  backgroundColor: Colors.transparent,
-                  backgroundImage: NetworkImage(
-                      'https://cdn-icons-png.flaticon.com/128/4288/4288903.png'),
-                ),
-              ),
-            ],
-          ),
-          Expanded(
-            child: Container(
-              padding: const EdgeInsets.only(left: 20, right: 20, top: 30),
-              width: width,
-              height: height / 1.5,
-              child: FadeAnimation(
-                delay: 1.4,
-                child: ListView.builder(
-                  itemCount: 4,
-                  itemBuilder: (context, index) {
-                    return InkWell(
-                      onTap: () {
-                        _navigateToScreen(index);
-                      },
-                      child: Container(
-                        height: width / 5.5,
-                        margin: EdgeInsets.symmetric(
-                          horizontal: width / 20,
-                          vertical: width / 30,
-                        ),
-                        decoration: BoxDecoration(
-                            color: customColor[index],
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(20),
+        Expanded(
+          child: Container(
+            padding: const EdgeInsets.only(left: 20, right: 20, top: 60),
+            width: width,
+            height: height / 1.5,
+            child: FadeAnimation(
+              delay: 1.4,
+              child: ListView.builder(
+                itemCount: 4,
+                itemBuilder: (context, index) {
+                  return InkWell(
+                    onTap: () {
+                      _navigateToScreen(index);
+                    },
+                    child: Container(
+                      height: width / 5,
+                      margin: EdgeInsets.symmetric(
+                        horizontal: width / 20,
+                        vertical: width / 30,
+                      ),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(20),
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.1),
+                              blurRadius: 30,
+                              spreadRadius: 5,
                             ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
-                                blurRadius: 30,
-                                spreadRadius: 5,
-                              ),
-                            ]),
-                        child: Center(
+                          ]),
+                      child: ListTile(
+                        title: Center(
                           child: Text(
                             titles[index],
                             style: GoogleFonts.robotoCondensed(
                               fontSize: 20,
-                              color: Colors.white,
+                              color: customColor[index],
                               fontWeight: FontWeight.bold,
                               letterSpacing: 3,
                             ),
                           ),
                         ),
+                        leading: Image.network(
+                          images[index],
+                          height: 50,
+                          width: 50,
+                        ),
+                        trailing: Icon(
+                          Icons.arrow_forward_ios_rounded,
+                          color: customColor[index],
+                          size: 30,
+                        ),
                       ),
-                    );
-                  },
-                ),
+                    ),
+                  );
+                },
               ),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

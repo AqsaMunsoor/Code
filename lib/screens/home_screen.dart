@@ -55,7 +55,7 @@ class HomeScreenState extends State<HomeScreen> {
       decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage(
-            'assets/login_back.png',
+            'assets/home_back.png',
           ),
           fit: BoxFit.cover,
         ),
@@ -382,7 +382,7 @@ class _HomeContentState extends State<HomeContent> {
                             decoration: ShapeDecoration(
                               shape: const RoundedRectangleBorder(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(10))),
+                                      BorderRadius.all(Radius.circular(25))),
                               color: customColor[index],
                             ),
                             child: Column(
