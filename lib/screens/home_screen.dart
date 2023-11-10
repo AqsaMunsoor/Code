@@ -2,6 +2,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gutter/flutter_gutter.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -47,11 +48,7 @@ class HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.sizeOf(context).width;
-    final height = MediaQuery.sizeOf(context).height;
     return Container(
-      height: height,
-      width: width,
       decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage(
@@ -66,10 +63,10 @@ class HomeScreenState extends State<HomeScreen> {
             ? AppBar(
                 backgroundColor: Colors.transparent,
                 // backgroundColor: HexColor('fccc8c'),
-                toolbarHeight: 50,
+                toolbarHeight: 50.h,
                 automaticallyImplyLeading: true,
-                iconTheme: const IconThemeData(
-                  size: 35,
+                iconTheme: IconThemeData(
+                  size: 35.sp,
                   color: Colors.white,
                 ),
               )
@@ -328,32 +325,34 @@ class _HomeContentState extends State<HomeContent> {
             FadeAnimation(
               delay: 1,
               child: CircleAvatar(
-                radius: 40.0,
+                radius: 40.r,
                 backgroundImage: NetworkImage(
                   FirebaseAuth.instance.currentUser!.photoURL ??
                       'https://www.revixpert.ch/app/uploads/portrait-placeholder.jpg',
                 ),
               ),
             ),
-            Gutter(),
             FadeAnimation(
               delay: 1.4,
               child: Text(
                 '${FirebaseAuth.instance.currentUser!.displayName}',
                 style: GoogleFonts.robotoCondensed(
-                  fontSize: 30,
+                  fontSize: 30.sp,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                   letterSpacing: 2,
                 ),
               ),
             ),
-            const Gutter(),
           ],
         ),
         Expanded(
           child: Container(
-            padding: const EdgeInsets.only(left: 20, right: 20, top: 80),
+            padding: EdgeInsets.only(
+              left: ScreenUtil().setWidth(20),
+              right: ScreenUtil().setWidth(20),
+              top: ScreenUtil().setHeight(30),
+            ),
             child: FadeAnimation(
               delay: 1.6,
               child: StaggeredGridView.countBuilder(
@@ -370,19 +369,21 @@ class _HomeContentState extends State<HomeContent> {
                       children: [
                         Container(
                           color: Colors.transparent,
-                          height: 200,
+                          height: 150.h,
+                          width: 150.h,
                         ),
                         Positioned(
                           top: 20,
                           left: 0,
                           right: 0,
                           child: Container(
-                            height: 150,
+                            height: 120.h,
+                            width: 120.w,
                             padding: const EdgeInsets.all(10),
                             decoration: ShapeDecoration(
-                              shape: const RoundedRectangleBorder(
+                              shape: RoundedRectangleBorder(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(25))),
+                                      BorderRadius.all(Radius.circular(25.r))),
                               color: customColor[index],
                             ),
                             child: Column(
@@ -390,22 +391,22 @@ class _HomeContentState extends State<HomeContent> {
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
                                       titles[index],
                                       style: GoogleFonts.roboto(
-                                        fontSize: 20,
+                                        fontSize: 20.sp,
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
                                         letterSpacing: 3,
                                       ),
                                     ),
-                                    const Gutter(),
-                                    const Icon(
+                                    Icon(
                                       Icons.arrow_forward_ios,
                                       color: Colors.white,
-                                      size: 20,
+                                      size: 20.sp,
                                     ),
                                   ],
                                 ),
@@ -428,8 +429,8 @@ class _HomeContentState extends State<HomeContent> {
                   );
                 },
                 staggeredTileBuilder: (index) => const StaggeredTile.fit(1),
-                mainAxisSpacing: 30.0,
-                crossAxisSpacing: 16.0,
+                mainAxisSpacing: ScreenUtil().setHeight(30),
+                crossAxisSpacing: ScreenUtil().setWidth(2.w),
               ),
             ),
           ),

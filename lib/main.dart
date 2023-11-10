@@ -1,10 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 import 'package:scalpinspector_app/db_helper.dart';
 import 'package:scalpinspector_app/screens/splash_screen.dart';
 import 'firebase_options.dart';
+import 'package:device_preview/device_preview.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,14 +31,16 @@ class ScalpInspectorApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Scalp Inspector',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
-        useMaterial3: true,
+    return ScreenUtilInit(
+      child: GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Scalp Inspector',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
+          useMaterial3: true,
+        ),
+        home: const SplashScreen(),
       ),
-      home: const SplashScreen(),
     );
   }
 }
